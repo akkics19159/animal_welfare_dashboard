@@ -1,0 +1,170 @@
+{
+  "species_profiles": {
+    "human": {
+      "normal_behaviour": ["standing", "walking", "social_interaction"],
+      "typical_physiology": ["resting_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["comfort", "predictable_environment"],
+      "distress_indicators": ["panic", "withdrawal", "agitation"],
+      "expected_vocalizations": ["speech", "crying"]
+    },
+    "dog": {
+      "normal_behaviour": ["walking", "playing", "social_interaction"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["space", "shade"],
+      "distress_indicators": ["pacing", "whining", "limping"],
+      "expected_vocalizations": ["barking", "whining"]
+    },
+    "cat": {
+      "normal_behaviour": ["resting", "exploring", "social_interaction"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["privacy", "warmth"],
+      "distress_indicators": ["pacing", "hiding", "vocalizing"],
+      "expected_vocalizations": ["meowing", "hissing"]
+    },
+    "cow": {
+      "normal_behaviour": ["standing", "grazing", "social_interaction"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["pasture", "water"],
+      "distress_indicators": ["pacing", "agitation", "limping"],
+      "expected_vocalizations": ["mooing"]
+    },
+    "horse": {
+      "normal_behaviour": ["standing", "walking", "grazing"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["space", "shelter"],
+      "distress_indicators": ["pacing", "whinnying", "limping"],
+      "expected_vocalizations": ["neighing", "whinnying"]
+    },
+    "goat": {
+      "normal_behaviour": ["grazing", "social_interaction", "standing"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["terrain", "shade"],
+      "distress_indicators": ["pacing", "vocalizing", "isolation"],
+      "expected_vocalizations": ["bleating"]
+    },
+    "sheep": {
+      "normal_behaviour": ["grazing", "standing", "social_interaction"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["pasture", "water"],
+      "distress_indicators": ["pacing", "isolation", "agitation"],
+      "expected_vocalizations": ["baaing"]
+    },
+    "bird": {
+      "normal_behaviour": ["perching", "foraging", "flying"],
+      "typical_physiology": ["normal_heart_rate", "normal_temperature"],
+      "environmental_preferences": ["shelter", "space"],
+      "distress_indicators": ["flapping", "calling", "isolation"],
+      "expected_vocalizations": ["chirping", "calling"]
+    }
+  },
+  "behaviour_library": {
+    "standing": {"normality": 0.9, "risk_level": 0.1, "context_dependencies": ["species"]},
+    "walking": {"normality": 0.8, "risk_level": 0.2, "context_dependencies": ["environment"]},
+    "running": {"normality": 0.2, "risk_level": 0.8, "context_dependencies": ["context"]},
+    "sleeping": {"normality": 0.9, "risk_level": 0.1, "context_dependencies": ["time_of_day"]},
+    "eating": {"normality": 0.85, "risk_level": 0.15, "context_dependencies": ["time_of_day"]},
+    "drinking": {"normality": 0.85, "risk_level": 0.15, "context_dependencies": ["environment"]},
+    "playing": {"normality": 0.8, "risk_level": 0.2, "context_dependencies": ["crowding"]},
+    "social_interaction": {"normality": 0.85, "risk_level": 0.15, "context_dependencies": ["occupancy"]},
+    "aggression": {"normality": 0.1, "risk_level": 0.95, "context_dependencies": ["crowding"]},
+    "limping": {"normality": 0.1, "risk_level": 0.9, "context_dependencies": ["species"]},
+    "pacing": {"normality": 0.15, "risk_level": 0.9, "context_dependencies": ["environment"]},
+    "isolation": {"normality": 0.2, "risk_level": 0.8, "context_dependencies": ["occupancy"]}
+  },
+  "welfare_indicators": {
+    "distress_vocalization": {"weight": 0.75, "description": "Repeated distress vocalizations"},
+    "limping": {"weight": 0.7, "description": "Possible injury or pain"},
+    "pacing": {"weight": 0.65, "description": "Restlessness or agitation"},
+    "heart_rate_extreme": {"weight": 0.8, "description": "Physiological distress"},
+    "temp_high": {"weight": 0.6, "description": "Heat stress"},
+    "aggression": {"weight": 0.7, "description": "Potential welfare threat"}
+  },
+  "environmental_conditions": {
+    "night": {"risk_multiplier": 1.1},
+    "day": {"risk_multiplier": 1.0},
+    "indoor": {"risk_multiplier": 1.05},
+    "outdoor": {"risk_multiplier": 1.0},
+    "high_crowding": {"risk_multiplier": 1.2}
+  },
+  "sensor_rules": [
+    {"name": "heart_rate_rule", "field": "heart_rate_extreme", "op": "exists", "value": true, "weight": 0.8},
+    {"name": "temperature_rule", "field": "temp_high", "op": "exists", "value": true, "weight": 0.55}
+  ],
+  "audio_rules": [
+    {"name": "audio_distress_rule", "field": "distress_vocalization", "op": "exists", "value": true, "weight": 0.75}
+  ],
+  "contextual_knowledge": [
+    {"name": "night_context", "field": "time_of_day", "op": "eq", "value": "night", "weight": 0.08},
+    {"name": "crowding_context", "field": "crowding", "op": "eq", "value": "high", "weight": 0.12},
+    {"name": "poor_sensor_context", "field": "sensor_quality", "op": "lt", "value": 0.4, "weight": -0.1},
+    {"name": "poor_audio_context", "field": "audio_quality", "op": "lt", "value": 0.4, "weight": -0.08}
+  ],
+  "reasoning_rules": [
+    {
+      "name": "distress_vocalization_rule",
+      "description": "Repeated distress vocalizations are strong welfare evidence",
+      "op": "and",
+      "weight": 0.8,
+      "rules": [
+        {"field": "distress_vocalization", "op": "exists", "value": true, "weight": 0.75},
+        {"field": "audio_quality", "op": "threshold", "direction": "gte", "value": 0.4, "weight": 0.05}
+      ]
+    },
+    {
+      "name": "mobility_rule",
+      "description": "Limping or pacing indicates elevated welfare concern",
+      "op": "or",
+      "weight": 0.7,
+      "rules": [
+        {"field": "limping", "op": "exists", "value": true, "weight": 0.7},
+        {"field": "pacing", "op": "exists", "value": true, "weight": 0.65}
+      ]
+    },
+    {
+      "name": "physiology_rule",
+      "description": "Physiological distress should increase concern",
+      "op": "or",
+      "weight": 0.75,
+      "rules": [
+        {"field": "heart_rate_extreme", "op": "exists", "value": true, "weight": 0.8},
+        {"field": "temp_high", "op": "exists", "value": true, "weight": 0.6}
+      ]
+    },
+    {
+      "name": "species_context_rule",
+      "description": "Species-specific distress patterns should influence assessment",
+      "op": "weighted",
+      "weight": 0.2,
+      "rules": [
+        {"field": "species", "op": "eq", "value": "dog", "weight": 0.1},
+        {"field": "species", "op": "eq", "value": "cat", "weight": 0.08}
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "name": "sleeping_running_conflict",
+      "description": "Sleeping and running are contradictory states",
+      "conditions": [
+        {"field": "sleeping", "value": true},
+        {"field": "running", "value": true}
+      ]
+    },
+    {
+      "name": "healthy_heart_rate_extreme_distress",
+      "description": "Healthy heart rate and extreme distress cannot both be true",
+      "conditions": [
+        {"field": "healthy_heart_rate", "value": true},
+        {"field": "heart_rate_extreme", "value": true}
+      ]
+    },
+    {
+      "name": "no_animal_distress_audio",
+      "description": "no detected animals with distress audio",
+      "conditions": [
+        {"field": "distress_vocalization", "value": true},
+        {"field": "occupancy", "value": 0}
+      ]
+    }
+  ]
+}

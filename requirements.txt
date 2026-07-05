@@ -1,0 +1,9 @@
+opencv-python
+librosa
+sounddevice
+streamlit
+pandas
+numpy
+ultralytics
+moviepy
+plotly
