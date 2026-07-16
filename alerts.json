@@ -1344,5 +1344,55 @@
     "source": "Reasoning Engine",
     "message": "Warning Welfare Risk: Suffering probability is 55.09%",
     "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784218862",
+    "timestamp": "2026-07-16T21:51:02.787059",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 42.63%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.55
+    },
+    "timestamp": "2026-07-16T16:21:02.921422+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.426).",
+    "details": {
+      "welfare_risk": 0.42626000000000003
+    },
+    "timestamp": "2026-07-16T16:21:02.921448+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.55
+    },
+    "timestamp": "2026-07-16T16:21:21.466673+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.426).",
+    "details": {
+      "welfare_risk": 0.42626000000000003
+    },
+    "timestamp": "2026-07-16T16:21:21.466713+00:00"
   }
 ]
