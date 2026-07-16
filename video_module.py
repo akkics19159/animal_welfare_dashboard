@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import os
 
+from vision_intelligence.input_source_manager import InputSourceManager
+
 # Try importing YOLO (Ultralytics)
 try:
     from ultralytics import YOLO
@@ -31,12 +33,13 @@ SENTIENT_CLASSES = {
     "goat",
 }
 
-DEFAULT_YOLO_MODEL = "yolov8n.pt"
+DEFAULT_YOLO_MODEL = "yolo11n.pt"
 FRAME_CAPTURE_COUNT = 12
 MOTION_DIFF_THRESHOLD = 30
 
 # Cache for YOLO models to prevent repeated loading
 _MODEL_CACHE = {}
+_INPUT_MANAGER = InputSourceManager()
 
 # -----------------------------
 # Capture Functions
@@ -49,34 +52,33 @@ def capture_video(source=0):
     source = 0 → webcam
     source = "path/to/video.mp4" → video file
     """
-    cap = cv2.VideoCapture(source)
-    if not cap.isOpened():
-        raise ValueError(f"Could not open video source: {source}")
+    if source == 0:
+        frame, _meta, err = _INPUT_MANAGER.read_frame_once()
+        if frame is not None:
+            return frame
+        raise ValueError(err or "Could not read a frame from the video source")
 
-    ret, frame = cap.read()
-    cap.release()
-    if ret:
-        return frame
+    for frame, _meta in _INPUT_MANAGER.get_frame_generator_for_source(source, max_frames=1):
+        if frame is not None:
+            return frame
 
     raise ValueError("Could not read a frame from the video source")
 
 
 def capture_video_frames(source=0, frame_count=FRAME_CAPTURE_COUNT):
     """Capture a small burst of consecutive frames for motion analysis."""
-    cap = cv2.VideoCapture(source)
-    if not cap.isOpened():
-        raise ValueError(f"Could not open video source: {source}")
-
     frames = []
-    count = 0
-    while count < frame_count:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        frames.append(frame)
-        count += 1
+    if source == 0:
+        for frame, _meta in _INPUT_MANAGER.get_frame_generator(max_frames=frame_count):
+            if frame is None:
+                break
+            frames.append(frame)
+    else:
+        for frame, _meta in _INPUT_MANAGER.get_frame_generator_for_source(source, max_frames=frame_count):
+            if frame is None:
+                break
+            frames.append(frame)
 
-    cap.release()
     if len(frames) == 0:
         raise ValueError("No frames captured for motion analysis")
 
@@ -109,32 +111,24 @@ def process_video_for_heatmap(source):
     Process an entire video (or webcam stream) to generate a movement heatmap.
     Returns the final heatmap image.
     """
-    cap = cv2.VideoCapture(source)
-    if not cap.isOpened():
-        raise ValueError(f"Could not open video source: {source}")
-
-    frames = []
+    frame_count = 0
     heatmap = None
-    while True:
-        ret, frame = cap.read()
-        if not ret:
+    for frame, _meta in _INPUT_MANAGER.get_frame_generator_for_source(source):
+        if frame is None:
             break
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        frames.append(gray.astype(np.float32))
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).astype(np.float32)
         if heatmap is None:
-            heatmap = gray
+            heatmap = gray.astype(np.float32)
         else:
-            heatmap += gray
-    cap.release()
+            heatmap += gray.astype(np.float32)
+        frame_count += 1
 
-    if len(frames) == 0:
+    if frame_count == 0:
         raise ValueError("No frames captured for heatmap")
 
     if heatmap is None:
         raise ValueError("Heatmap could not be initialized")
 
-    heatmap = np.sum(frames, axis=0)
     heatmap = cv2.normalize(heatmap, None, 0, 255, cv2.NORM_MINMAX)
     return cv2.applyColorMap(heatmap.astype(np.uint8), cv2.COLORMAP_JET)
 
@@ -152,8 +146,6 @@ def detect_any_species(frame, model_path=DEFAULT_YOLO_MODEL, confidence=0.25):
     detections = []
     if YOLO_AVAILABLE:
         try:
-            model = YOLO(model_path)
-            results = model(frame)
             if model_path not in _MODEL_CACHE:
                 _MODEL_CACHE[model_path] = YOLO(model_path)
             model = _MODEL_CACHE[model_path]
@@ -195,21 +187,28 @@ def detect_animals(frame, **kwargs):
 
 
 def analyze_video_behavior(source=0, model_path=DEFAULT_YOLO_MODEL, confidence=0.25):
-    """Analyze visible behavior and motion to estimate stress risk."""
+    """Analyze visible behavior and motion to estimate stress risk.
+
+    Backward compatible interface.
+
+    Requirements enforced:
+    - Webcam-first input sourcing (webcam, else newest valid local video)
+    - No crash if input missing/corrupted
+    - Returns legacy keys used by fusion/reasoning/UI.
+    - Extends the vision output contract with tracking/counting/trajectory fields.
+    """
     try:
-        frames = capture_video_frames(source)
-        frame = frames[0]
-        detections = detect_any_species(frame, model_path=model_path, confidence=confidence)
-        motion_score = estimate_motion_score(frames)
-        return {
-            "detections": detections,
-            "motion_score": motion_score,
-            "agitated": motion_score >= 0.08,
-            "motion_agitation": motion_score >= 0.08,  # Standardized key for ontology
-            "sentient_present": len(detections) > 0,   # Logic to enable other rules
-            "frame_count": len(frames),
-            "error": None,
-        }
+        from vision_intelligence.vision_pipeline import VisionPipeline
+
+        pipeline = VisionPipeline(
+            yolo_model_path=model_path,
+            yolo_confidence=confidence,
+        )
+
+        # source parameter kept for backward compatibility but ignored:
+        # the InputSourceManager enforces webcam priority and local fallback.
+        result = pipeline.run_once(max_frames=1)
+        return result.video_result
     except Exception as exc:
         return {
             "detections": [],
@@ -220,6 +219,7 @@ def analyze_video_behavior(source=0, model_path=DEFAULT_YOLO_MODEL, confidence=0
             "frame_count": 0,
             "error": str(exc),
         }
+
 
 
 def detect_animals_with_cascade(frame, cascade="haarcascade_frontalface_default.xml"):

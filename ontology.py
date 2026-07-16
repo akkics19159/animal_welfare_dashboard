@@ -68,13 +68,38 @@ def _legacy_flags_to_reasoning_input(video_flags: dict, audio_flags: dict, senso
 
 def evaluate_rules(video_flags: dict, audio_flags: dict, sensor_flags: dict) -> Tuple[float, List[str]]:
     """Evaluate welfare reasoning rules and return an ontology score plus explanation strings."""
+    score, explanations, _details = evaluate_rules_detailed(video_flags, audio_flags, sensor_flags)
+    return score, explanations
+
+
+def evaluate_rules_detailed(video_flags: dict, audio_flags: dict, sensor_flags: dict):
+    """Extended evaluation that also returns structured reasoning details."""
     input_data = _legacy_flags_to_reasoning_input(video_flags, audio_flags, sensor_flags)
     result = _ENGINE.reason(input_data)
     explanations = [
         f"{item.label}: {item.detail}" for item in result.evidence
     ]
     explanations.extend(result.contradictions)
-    return round(result.final_assessment_score, 4), explanations
+    details = {
+        "assessment_label": result.assessment_label,
+        "reasoning_confidence": result.reasoning_confidence,
+        "triggered_rules": result.triggered_rules,
+        "ignored_rules": result.ignored_rules,
+        "contradictions": result.contradictions,
+        "alternative_explanations": result.alternative_explanations,
+        "recommended_human_review": result.recommended_human_review,
+        "summary": result.summary,
+        "risk_level": result.risk_level,
+        "severity": result.severity,
+        "urgency": result.urgency,
+        "prediction_uncertainty": result.prediction_uncertainty,
+        "agreement_score": result.agreement_score,
+        "evidence_summary": result.evidence_summary,
+        "suppressed_evidence": result.suppressed_evidence,
+        "reasoning_trace": result.reasoning_trace,
+        "temporal_welfare_state": result.temporal_welfare_state,
+    }
+    return round(result.final_assessment_score, 4), explanations, details
 
 
 def ontology_penalty(predicted_prob: float, ontology_score: float, strength: float = 0.5):

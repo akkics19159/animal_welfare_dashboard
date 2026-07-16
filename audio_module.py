@@ -3,6 +3,7 @@ import os
 import shutil
 import subprocess
 import tempfile
+import threading
 from typing import Any, Dict, Optional
 
 import librosa
@@ -20,6 +21,31 @@ from audio_intelligence.ingestion import AudioIngestionService
 from audio_intelligence.pipeline import AudioIntelligencePipeline
 
 logger = logging.getLogger(__name__)
+
+_AUDIO_RUNTIME_LOCK = threading.RLock()
+_AUDIO_INGESTION_SERVICE: Optional[AudioIngestionService] = None
+_AUDIO_PIPELINE_BY_SR: Dict[int, AudioIntelligencePipeline] = {}
+
+
+def _get_ingestion_service() -> AudioIngestionService:
+    global _AUDIO_INGESTION_SERVICE
+    with _AUDIO_RUNTIME_LOCK:
+        if _AUDIO_INGESTION_SERVICE is None:
+            _AUDIO_INGESTION_SERVICE = AudioIngestionService(logger_instance=logger)
+        return _AUDIO_INGESTION_SERVICE
+
+
+def _get_audio_pipeline(sample_rate: int) -> AudioIntelligencePipeline:
+    with _AUDIO_RUNTIME_LOCK:
+        cached = _AUDIO_PIPELINE_BY_SR.get(int(sample_rate))
+        if cached is not None:
+            return cached
+        pipeline = AudioIntelligencePipeline(
+            config=AudioPipelineConfig(processing=AudioProcessingConfig(target_sample_rate=sample_rate)),
+            logger_instance=logger,
+        )
+        _AUDIO_PIPELINE_BY_SR[int(sample_rate)] = pipeline
+        return pipeline
 
 
 def ffmpeg_available():
@@ -43,11 +69,8 @@ def _compute_acoustic_features(signal: np.ndarray, sample_rate: int) -> Dict[str
 
 
 def _run_pipeline(signal: np.ndarray, sample_rate: int, source_type: str = "microphone", metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-    ingestion = AudioIngestionService(logger_instance=logger)
-    pipeline = AudioIntelligencePipeline(
-        config=AudioPipelineConfig(processing=AudioProcessingConfig(target_sample_rate=sample_rate)),
-        logger_instance=logger,
-    )
+    _ = _get_ingestion_service()
+    pipeline = _get_audio_pipeline(sample_rate)
     from audio_intelligence.ingestion import AudioInput, AudioMetadata
 
     audio_input = AudioInput(
@@ -62,10 +85,19 @@ def _run_pipeline(signal: np.ndarray, sample_rate: int, source_type: str = "micr
             "distress_probability": float(result.summary.distress_probability),
             "emotion_probabilities": result.feature_vector.emotion_probabilities[-1] if result.feature_vector.emotion_probabilities else {},
             "audio_confidence": float(result.summary.confidence),
+            "confidence": float(result.summary.confidence),
             "species": result.summary.detected_species,
             "sound_classes": result.summary.detected_sounds,
             "filtered_sounds": result.summary.filtered_sounds,
             "temporal_pattern": result.summary.temporal_pattern,
+            "temporal_consistency": float(result.summary.temporal_consistency),
+            "audio_quality": float(result.summary.audio_quality),
+            "non_distress_probability": float(result.summary.non_distress_probability),
+            "suppressed_reason": result.summary.suppressed_reason,
+            "event_duration": float(result.summary.event_duration),
+            "event_type": result.summary.event_type,
+            "audio_embedding": list(result.summary.audio_embedding),
+            "audio_embedding_backend": result.summary.embedding_backend,
             "processing_latency_ms": float(result.processing_latency_ms),
             "segments": result.raw_segments,
             "feature_embeddings": result.feature_vector.feature_embeddings,
@@ -106,11 +138,20 @@ def detect_distress(audio_features, energy_threshold=0.02, zcr_threshold=0.12,
             "distress": distress,
             "audio_distress": distress,
             "score": probability,
+            "distress_probability": probability,
             "energy": float(audio_features.get("energy", 0.0)),
             "zcr": float(audio_features.get("zcr", 0.0)),
             "centroid": float(audio_features.get("centroid", 0.0)),
             "bandwidth": float(audio_features.get("bandwidth", 0.0)),
             "audio_confidence": float(audio_features.get("audio_confidence", 0.0)),
+            "confidence": float(audio_features.get("confidence", audio_features.get("audio_confidence", 0.0))),
+            "audio_quality": float(audio_features.get("audio_quality", 0.0)),
+            "temporal_consistency": float(audio_features.get("temporal_consistency", 0.0)),
+            "non_distress_probability": float(audio_features.get("non_distress_probability", 0.0)),
+            "suppressed_reason": audio_features.get("suppressed_reason"),
+            "event_duration": float(audio_features.get("event_duration", 0.0)),
+            "event_type": audio_features.get("event_type", "unknown_audio"),
+            "audio_embedding": audio_features.get("audio_embedding", []),
             "species": audio_features.get("species", []),
             "sound_classes": audio_features.get("sound_classes", []),
             "filtered_sounds": audio_features.get("filtered_sounds", []),
@@ -138,10 +179,19 @@ def detect_distress(audio_features, energy_threshold=0.02, zcr_threshold=0.12,
         "distress": distress,
         "audio_distress": distress,
         "score": score,
+        "distress_probability": score,
         "energy": energy,
         "zcr": zcr,
         "centroid": centroid,
         "bandwidth": bandwidth,
+        "confidence": min(1.0, max(0.0, score + 0.2)),
+        "audio_quality": min(1.0, max(0.0, energy / 0.08)) if energy > 0 else 0.0,
+        "temporal_consistency": 0.0,
+        "non_distress_probability": 0.0,
+        "suppressed_reason": None,
+        "event_duration": float(audio_features.get("duration", 0.0) or 0.0),
+        "event_type": "distress_vocalization" if distress else "unknown_audio",
+        "audio_embedding": audio_features.get("audio_embedding", []),
     }
 
 

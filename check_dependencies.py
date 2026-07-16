@@ -77,11 +77,11 @@ def main():
     all_required_ok = True
     for pkg, import_name in required_packages.items():
         installed, error = check_python_package(pkg, import_name)
-        status = "✓ INSTALLED" if installed else "✗ MISSING"
+        status = "[OK] INSTALLED" if installed else "[FAIL] MISSING"
         print(f"  {pkg:<25} {status}")
         if not installed:
             all_required_ok = False
-            print(f"    → {error}")
+            print(f"    -> {error}")
 
     # Optional packages
     optional_packages = {
@@ -91,33 +91,33 @@ def main():
     print(f"\n[Optional Python Packages]")
     for pkg, import_name in optional_packages.items():
         installed, error = check_python_package(pkg, import_name)
-        status = "✓ INSTALLED" if installed else "○ NOT INSTALLED (optional)"
+        status = "[OK] INSTALLED" if installed else "[-] NOT INSTALLED (optional)"
         print(f"  {pkg:<25} {status}")
         if not installed and error:
-            print(f"    → {error}")
+            print(f"    -> {error}")
 
     # Audio backends
     print(f"\n[Audio Backend Libraries]")
     audio_backends = check_audio_backends()
     for backend, (installed, error) in audio_backends.items():
-        status = "✓ AVAILABLE" if installed else "○ NOT AVAILABLE"
+        status = "[OK] AVAILABLE" if installed else "[-] NOT AVAILABLE"
         print(f"  {backend:<25} {status}")
 
     # FFmpeg system tool
     print(f"\n[System Tools]")
     ffmpeg_ok, ffmpeg_msg = check_ffmpeg()
-    ffmpeg_status = "✓ AVAILABLE" if ffmpeg_ok else "✗ REQUIRED BUT MISSING"
+    ffmpeg_status = "[OK] AVAILABLE" if ffmpeg_ok else "[FAIL] REQUIRED BUT MISSING"
     print(f"  ffmpeg                  {ffmpeg_status}")
-    print(f"    → {ffmpeg_msg}")
+    print(f"    -> {ffmpeg_msg}")
 
     # Summary
     print(f"\n" + "=" * 70)
     if all_required_ok and ffmpeg_ok:
-        print("✓ ALL CRITICAL DEPENDENCIES MET - Ready to use!")
+        print("[OK] ALL CRITICAL DEPENDENCIES MET - Ready to use!")
         print("=" * 70)
         return 0
     else:
-        print("✗ MISSING CRITICAL DEPENDENCIES")
+        print("[FAIL] MISSING CRITICAL DEPENDENCIES")
         print("=" * 70)
         if not ffmpeg_ok:
             print("\n[ACTION REQUIRED: Install FFmpeg]")

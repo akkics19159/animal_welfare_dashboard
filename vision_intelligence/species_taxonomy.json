@@ -1,0 +1,25 @@
+{
+  "species": [
+    {"name": "Human", "group": "human", "prompts": ["a photo of a human", "a photo of a person"]},
+    {"name": "Dog", "group": "mammal", "prompts": ["a photo of a dog", "a photo of a domestic dog"]},
+    {"name": "Cat", "group": "mammal", "prompts": ["a photo of a cat", "a photo of a domestic cat"]},
+    {"name": "Cow", "group": "mammal", "prompts": ["a photo of a cow"]},
+    {"name": "Horse", "group": "mammal", "prompts": ["a photo of a horse"]},
+    {"name": "Goat", "group": "mammal", "prompts": ["a photo of a goat"]},
+    {"name": "Sheep", "group": "mammal", "prompts": ["a photo of a sheep"]},
+    {"name": "Pig", "group": "mammal", "prompts": ["a photo of a pig"]},
+    {"name": "Bird", "group": "bird", "prompts": ["a photo of a bird"]},
+    {"name": "Rabbit", "group": "mammal", "prompts": ["a photo of a rabbit"]},
+    {"name": "Monkey", "group": "mammal", "prompts": ["a photo of a monkey"]},
+    {"name": "Bear", "group": "mammal", "prompts": ["a photo of a bear"]},
+    {"name": "Elephant", "group": "mammal", "prompts": ["a photo of an elephant"]},
+    {"name": "Zebra", "group": "mammal", "prompts": ["a photo of a zebra"]},
+    {"name": "Giraffe", "group": "mammal", "prompts": ["a photo of a giraffe"]},
+    {"name": "Camel", "group": "mammal", "prompts": ["a photo of a camel"]},
+    {"name": "Buffalo", "group": "mammal", "prompts": ["a photo of a buffalo"]},
+    {"name": "Chicken", "group": "bird", "prompts": ["a photo of a chicken"]},
+    {"name": "Duck", "group": "bird", "prompts": ["a photo of a duck"]},
+    {"name": "Deer", "group": "mammal", "prompts": ["a photo of a deer"]},
+    {"name": "Other", "group": "unknown", "prompts": ["a photo of another animal"]}
+  ]
+}

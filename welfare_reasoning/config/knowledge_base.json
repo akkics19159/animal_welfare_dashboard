@@ -166,5 +166,24 @@
         {"field": "occupancy", "value": 0}
       ]
     }
-  ]
+  ],
+  "species_thresholds": {
+    "human": {"moderate": 0.42, "high": 0.72},
+    "dog": {"moderate": 0.45, "high": 0.75},
+    "cat": {"moderate": 0.46, "high": 0.76},
+    "cow": {"moderate": 0.44, "high": 0.74},
+    "horse": {"moderate": 0.45, "high": 0.75},
+    "goat": {"moderate": 0.44, "high": 0.74},
+    "sheep": {"moderate": 0.44, "high": 0.74},
+    "bird": {"moderate": 0.43, "high": 0.73}
+  },
+  "decision_engine": {
+    "prior_risk": 0.15,
+    "blend_rule": 0.35,
+    "blend_bayes": 0.40,
+    "blend_conf": 0.25,
+    "moderate_threshold": 0.45,
+    "high_threshold": 0.75,
+    "suppression_strength": 0.70
+  }
 }

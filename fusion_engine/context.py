@@ -20,10 +20,29 @@ class TemporalContextBuilder:
         if not relevant:
             relevant = history[-1:]
         average_confidence = sum(item.confidence for item in relevant) / len(relevant)
+        # Timeline proxy uses mean value magnitude per sample to support temporal welfare analysis.
+        timeline = []
+        for item in relevant:
+            vals = [float(v) for v in item.values.values()] if item.values else [0.0]
+            timeline.append(
+                {
+                    "timestamp": item.timestamp,
+                    "modality": item.modality,
+                    "score": float(sum(vals) / max(1, len(vals))),
+                    "confidence": float(item.confidence),
+                }
+            )
+
+        trend = 0.0
+        if len(timeline) >= 2:
+            trend = float(timeline[-1]["score"] - timeline[0]["score"])
+
         return {
             "window_seconds": self.window_seconds,
             "samples": len(relevant),
             "average_confidence": average_confidence,
             "timestamps": [item.timestamp for item in relevant],
             "modalities": [item.modality for item in relevant],
+            "welfare_timeline": timeline,
+            "trend": trend,
         }

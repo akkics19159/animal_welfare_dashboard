@@ -7,3 +7,8 @@ numpy
 ultralytics
 moviepy
 plotly
+fastapi
+uvicorn[standard]
+psutil
+requests
+httpx

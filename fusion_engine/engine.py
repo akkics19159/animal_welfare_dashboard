@@ -68,6 +68,11 @@ class MultimodalFusionEngine:
         output.unified_representation = output.unified_representation or {}
         output.unified_representation["temporal_context"] = output.temporal_context
         output.unified_representation["validation"] = {name: report.__dict__ for name, report in validation_report.items()}
+        present_modalities = [m for m in ("vision", "audio", "sensors") if getattr(aligned_input, m, None) is not None]
+        missing_modality_impact = float((3 - len(present_modalities)) / 3.0)
+        output.unified_representation["agreement_score"] = float(output.agreement_score)
+        output.unified_representation["modality_confidence"] = output.modality_confidence
+        output.unified_representation["missing_modality_impact"] = missing_modality_impact
         output.unified_representation["welfare_features"] = {
             "behavior": output.unified_representation.get("features", {}),
             "species": output.unified_representation.get("features", {}),
@@ -78,6 +83,8 @@ class MultimodalFusionEngine:
             "temporal_descriptors": output.temporal_context,
             "confidence_values": output.reliability_scores,
             "quality_scores": output.reliability_scores,
+            "agreement_score": float(output.agreement_score),
+            "missing_modality_impact": missing_modality_impact,
         }
         return output
 

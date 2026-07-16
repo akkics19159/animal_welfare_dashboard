@@ -1,0 +1,38 @@
+[
+  {
+    "experiment_id": "exp_welfare_fusion_v1_run",
+    "metrics": {
+      "final_loss": 0.185,
+      "final_val_loss": 0.210,
+      "final_accuracy": 0.912,
+      "final_val_accuracy": 0.898,
+      "epochs_completed": 50,
+      "total_duration_sec": 1240.0
+    },
+    "config": {
+      "model_name": "welfare-fusion-v1",
+      "learning_rate": 0.001,
+      "batch_size": 32,
+      "epochs": 50,
+      "optimizer": "Adam"
+    }
+  },
+  {
+    "experiment_id": "exp_welfare_fusion_v2_beta_run",
+    "metrics": {
+      "final_loss": 0.134,
+      "final_val_loss": 0.158,
+      "final_accuracy": 0.941,
+      "final_val_accuracy": 0.932,
+      "epochs_completed": 75,
+      "total_duration_sec": 2450.0
+    },
+    "config": {
+      "model_name": "welfare-fusion-v2-beta",
+      "learning_rate": 0.0005,
+      "batch_size": 32,
+      "epochs": 75,
+      "optimizer": "AdamW"
+    }
+  }
+]

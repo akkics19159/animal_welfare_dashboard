@@ -1,0 +1,42 @@
+{
+  "welfare-dataset-v1.0": {
+    "dataset_id": "welfare-dataset-v1.0",
+    "version": "1.0",
+    "metadata": {
+      "name": "Sentient Welfare Dataset (Prod)",
+      "description": "Baseline dataset for sentient being welfare detection.",
+      "samples": 1250,
+      "species_distribution": {
+        "dog": 450,
+        "cat": 350,
+        "person": 300,
+        "cow": 100,
+        "bird": 50
+      },
+      "annotation_progress": 100.0,
+      "validation_status": "Passed",
+      "quality_score": 0.94,
+      "created_at": "2026-01-10T08:00:00Z"
+    }
+  },
+  "welfare-dataset-v1.1-beta": {
+    "dataset_id": "welfare-dataset-v1.1-beta",
+    "version": "1.1-beta",
+    "metadata": {
+      "name": "Sentient Welfare Dataset (Staging)",
+      "description": "Staging dataset containing additional outdoor and low-light samples.",
+      "samples": 420,
+      "species_distribution": {
+        "dog": 150,
+        "cat": 120,
+        "person": 100,
+        "cow": 30,
+        "sheep": 20
+      },
+      "annotation_progress": 82.5,
+      "validation_status": "Pending",
+      "quality_score": 0.89,
+      "created_at": "2026-06-15T12:30:00Z"
+    }
+  }
+}

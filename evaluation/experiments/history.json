@@ -1,0 +1,71 @@
+[
+  {
+    "name": "welfare-fusion-v1 evaluation run",
+    "metrics": {
+      "precision": 0.885,
+      "recall": 0.906,
+      "f1": 0.895,
+      "brier_score": 0.082,
+      "ece": 0.045,
+      "roc_auc": 0.942,
+      "latency": 42.5,
+      "memory": 180.0,
+      "confusion_matrix": {
+        "tp": 115,
+        "fp": 15,
+        "fn": 12,
+        "tn": 108
+      }
+    },
+    "config": {
+      "model": "welfare-fusion-v1",
+      "dataset": "welfare-dataset-v1.0"
+    }
+  },
+  {
+    "name": "welfare-fusion-v2-beta evaluation run",
+    "metrics": {
+      "precision": 0.912,
+      "recall": 0.930,
+      "f1": 0.921,
+      "brier_score": 0.061,
+      "ece": 0.029,
+      "roc_auc": 0.965,
+      "latency": 58.2,
+      "memory": 240.0,
+      "confusion_matrix": {
+        "tp": 120,
+        "fp": 11,
+        "fn": 9,
+        "tn": 110
+      }
+    },
+    "config": {
+      "model": "welfare-fusion-v2-beta",
+      "dataset": "welfare-dataset-v1.1-beta"
+    }
+  },
+  {
+    "name": "welfare-vision-only evaluation run",
+    "metrics": {
+      "precision": 0.762,
+      "recall": 0.743,
+      "f1": 0.752,
+      "brier_score": 0.165,
+      "ece": 0.098,
+      "roc_auc": 0.825,
+      "latency": 28.1,
+      "memory": 110.0,
+      "confusion_matrix": {
+        "tp": 96,
+        "fp": 30,
+        "fn": 33,
+        "tn": 91
+      }
+    },
+    "config": {
+      "model": "welfare-vision-only",
+      "dataset": "welfare-dataset-v1.0"
+    }
+  }
+]

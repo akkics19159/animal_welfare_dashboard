@@ -28,9 +28,22 @@ class RuleBasedSoundClassifier(BaseSoundClassifier):
         features = self.features.extract(signal, sample_rate)
         energy = features.rms_energy
         pitch = features.pitch
+        tempo = features.tempo
         if energy < 1e-3:
             label = "silence"
             confidence = 0.98
+        elif tempo > 145 and energy < 0.03:
+            label = "play"
+            confidence = 0.70
+        elif 120 <= tempo <= 170 and 160 <= pitch <= 280 and energy < 0.05:
+            label = "mating"
+            confidence = 0.66
+        elif energy > 0.06 and pitch < 160:
+            label = "feeding"
+            confidence = 0.62
+        elif 180 <= pitch <= 320 and energy < 0.04:
+            label = "social_communication"
+            confidence = 0.65
         elif pitch > 250:
             label = "barking"
             confidence = 0.72
@@ -98,6 +111,9 @@ class RuleBasedDistressClassifier(BaseDistressClassifier):
             "panic_probability": float(panic),
             "aggression_probability": float(aggression),
             "confidence": float(confidence),
+            "audio_quality": float(min(1.0, max(0.0, energy / 0.08))),
+            "event_duration": float(features.duration),
+            "event_type": "distress_vocalization" if distress >= 0.55 else "undetermined",
         }
 
 
@@ -125,23 +141,106 @@ class VocalizationFilter:
         }
 
 
+class NonDistressFilter:
+    """Reduces false positives by suppressing normal behavioural sounds."""
+
+    def __init__(self, config: Optional[AudioProcessingConfig] = None):
+        self.config = config or AudioProcessingConfig()
+
+    def evaluate(self, sound_predictions: List[Dict[str, Any]], distress_probability: float) -> Dict[str, Any]:
+        if not sound_predictions:
+            return {
+                "non_distress_probability": 0.0,
+                "suppressed": False,
+                "suppressed_reason": None,
+                "event_type": "unknown_audio",
+                "label": "unknown",
+            }
+
+        label = str(sound_predictions[0].get("label", "unknown")).lower()
+        conf = float(sound_predictions[0].get("confidence", 0.0) or 0.0)
+
+        normal_map = {
+            "mating": "mating_vocalization",
+            "courtship": "courtship_behaviour",
+            "play": "play_vocalization",
+            "feeding": "feeding_sound",
+            "grooming": "grooming_sound",
+            "parent_offspring": "parent_offspring_communication",
+            "social_communication": "social_communication",
+            "exploration": "exploration",
+            "curiosity": "curiosity",
+            "speech": "normal_communication",
+            "environmental": "normal_environmental_sound",
+            "background_noise": "normal_environmental_sound",
+            "music": "normal_environmental_sound",
+            "wind": "normal_environmental_sound",
+            "rain": "normal_environmental_sound",
+        }
+
+        event_type = normal_map.get(label, "distress_vocalization" if distress_probability >= 0.55 else "unknown_audio")
+        non_distress_probability = conf if label in normal_map else max(0.0, 1.0 - distress_probability)
+
+        suppressed = False
+        reason = None
+        if label in normal_map and non_distress_probability >= self.config.non_distress_suppression_threshold:
+            if distress_probability < self.config.strong_distress_override_threshold:
+                suppressed = True
+                reason = f"Suppressed likely non-distress event: {event_type}"
+
+        return {
+            "non_distress_probability": float(min(1.0, max(0.0, non_distress_probability))),
+            "suppressed": bool(suppressed),
+            "suppressed_reason": reason,
+            "event_type": event_type,
+            "label": label,
+        }
+
+
 class TemporalAudioAnalyzer:
     """Analyzes temporal distress patterns over a rolling context."""
 
-    def analyze(self, distress_probabilities: List[float]) -> Dict[str, Any]:
-        if not distress_probabilities:
-            return {"pattern": "continuous_normal_behaviour", "persistent_distress": False, "repeated_distress": False, "escalating_distress": False, "intermittent_distress": False}
+    def __init__(self, config: Optional[AudioProcessingConfig] = None):
+        self.config = config or AudioProcessingConfig()
 
-        if all(prob >= 0.7 for prob in distress_probabilities):
+    def analyze(self, distress_probabilities: List[float], segment_durations: Optional[List[float]] = None) -> Dict[str, Any]:
+        if not distress_probabilities:
+            return {
+                "pattern": "continuous_normal_behaviour",
+                "persistent_distress": False,
+                "repeated_distress": False,
+                "escalating_distress": False,
+                "intermittent_distress": False,
+                "duration": 0.0,
+                "repetition": 0,
+                "rhythm": 0.0,
+                "escalation": 0.0,
+                "persistence": 0.0,
+                "event_frequency": 0.0,
+                "temporal_consistency": 0.0,
+            }
+
+        threshold = self.config.temporal_distress_threshold
+        if all(prob >= threshold for prob in distress_probabilities):
             pattern = "persistent_distress"
-        elif distress_probabilities[-1] >= 0.7 and distress_probabilities[-1] > distress_probabilities[0]:
+        elif distress_probabilities[-1] >= threshold and (distress_probabilities[-1] - distress_probabilities[0]) >= self.config.temporal_escalation_delta:
             pattern = "escalating_distress"
-        elif sum(1 for prob in distress_probabilities if prob >= 0.7) >= 2:
+        elif sum(1 for prob in distress_probabilities if prob >= threshold) >= self.config.temporal_min_events_for_repetition:
             pattern = "repeated_distress"
-        elif any(prob >= 0.7 for prob in distress_probabilities) and any(prob < 0.3 for prob in distress_probabilities):
+        elif any(prob >= threshold for prob in distress_probabilities) and any(prob < 0.3 for prob in distress_probabilities):
             pattern = "intermittent_distress"
         else:
             pattern = "continuous_normal_behaviour"
+
+        durations = segment_durations or []
+        total_duration = float(sum(durations)) if durations else float(len(distress_probabilities))
+        repetition = int(sum(1 for prob in distress_probabilities if prob >= threshold))
+        diffs = np.diff(np.asarray(distress_probabilities, dtype=np.float32)) if len(distress_probabilities) >= 2 else np.asarray([], dtype=np.float32)
+        escalation = float(max(0.0, np.mean(np.maximum(diffs, 0.0)))) if diffs.size else 0.0
+        rhythm = float(np.std(diffs)) if diffs.size else 0.0
+        persistence = float(np.mean(distress_probabilities))
+        event_frequency = float(repetition / max(1e-6, total_duration))
+        temporal_consistency = float(max(0.0, min(1.0, 1.0 - min(1.0, rhythm))))
 
         return {
             "pattern": pattern,
@@ -149,4 +248,11 @@ class TemporalAudioAnalyzer:
             "repeated_distress": pattern == "repeated_distress",
             "escalating_distress": pattern == "escalating_distress",
             "intermittent_distress": pattern == "intermittent_distress",
+            "duration": total_duration,
+            "repetition": repetition,
+            "rhythm": rhythm,
+            "escalation": escalation,
+            "persistence": persistence,
+            "event_frequency": event_frequency,
+            "temporal_consistency": temporal_consistency,
         }

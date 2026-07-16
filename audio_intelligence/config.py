@@ -41,7 +41,31 @@ class AudioProcessingConfig:
         "feeding",
         "play",
         "social_bonding",
+        "mating",
+        "courtship",
+        "grooming",
+        "parent_offspring",
+        "social_communication",
+        "exploration",
+        "curiosity",
+        "environmental",
     )
+    non_distress_suppression_strength: float = 0.75
+    non_distress_suppression_threshold: float = 0.55
+    strong_distress_override_threshold: float = 0.85
+    allow_cross_modal_override: bool = True
+    embedding_backend_priority: tuple[str, ...] = (
+        "beats",
+        "ast",
+        "yamnet",
+        "handcrafted",
+    )
+    embedding_size: int = 128
+    enable_embedding_cache: bool = True
+    temporal_distress_threshold: float = 0.6
+    temporal_escalation_delta: float = 0.15
+    temporal_min_events_for_repetition: int = 2
+    temporal_window_seconds: float = 8.0
     species_priority: tuple[str, ...] = (
         "dog",
         "cat",
@@ -64,6 +88,7 @@ class AudioPipelineConfig:
     distress_classifier_name: str = "rule-based"
     enable_temporal_analysis: bool = True
     enable_vocalization_filter: bool = True
+    enable_non_distress_filter: bool = True
     enable_feature_logging: bool = False
     logger_name: str = "audio_intelligence"
     model_cache_dir: Optional[str] = None

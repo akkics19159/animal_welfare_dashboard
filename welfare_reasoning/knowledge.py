@@ -38,3 +38,9 @@ class KnowledgeBase:
 
     def get_constraints(self) -> List[Dict[str, Any]]:
         return self.config.get("constraints", [])
+
+    def get_species_thresholds(self) -> Dict[str, Any]:
+        return self.config.get("species_thresholds", {})
+
+    def get_decision_config(self) -> Dict[str, Any]:
+        return self.config.get("decision_engine", {})

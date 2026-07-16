@@ -56,6 +56,16 @@ class WelfareReasoningEngine:
             alternative_explanations=override.alternative_explanations or base.alternative_explanations,
             recommended_human_review=override.recommended_human_review or base.recommended_human_review,
             summary=override.summary or base.summary,
+            welfare_score=override.welfare_score if override.welfare_score else base.welfare_score,
+            risk_level=override.risk_level or base.risk_level,
+            severity=override.severity or base.severity,
+            urgency=override.urgency or base.urgency,
+            prediction_uncertainty=override.prediction_uncertainty if override.prediction_uncertainty else base.prediction_uncertainty,
+            agreement_score=override.agreement_score if override.agreement_score else base.agreement_score,
+            evidence_summary=override.evidence_summary or base.evidence_summary,
+            suppressed_evidence=override.suppressed_evidence or base.suppressed_evidence,
+            reasoning_trace=override.reasoning_trace or base.reasoning_trace,
+            temporal_welfare_state=override.temporal_welfare_state or base.temporal_welfare_state,
         )
 
     def _register_default_plugins(self) -> None:

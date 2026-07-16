@@ -1,0 +1,1180 @@
+[
+  {
+    "id": "alert_risk_1783229524",
+    "timestamp": "2026-07-05T11:02:04.929274",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783229524",
+    "timestamp": "2026-07-05T11:02:04.943899",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783229551",
+    "timestamp": "2026-07-05T11:02:31.590319",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783229551",
+    "timestamp": "2026-07-05T11:02:31.592640",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783334770",
+    "timestamp": "2026-07-06T16:16:10.590090",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783334770",
+    "timestamp": "2026-07-06T16:16:10.595196",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783334841",
+    "timestamp": "2026-07-06T16:17:21.441299",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783334841",
+    "timestamp": "2026-07-06T16:17:21.445292",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783334986",
+    "timestamp": "2026-07-06T16:19:46.137883",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783334986",
+    "timestamp": "2026-07-06T16:19:46.142252",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783335168",
+    "timestamp": "2026-07-06T16:22:48.437792",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783335168",
+    "timestamp": "2026-07-06T16:22:48.440752",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783335306",
+    "timestamp": "2026-07-06T16:25:06.329901",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783335306",
+    "timestamp": "2026-07-06T16:25:06.333135",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783340067",
+    "timestamp": "2026-07-06T17:44:27.326279",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341664",
+    "timestamp": "2026-07-06T18:11:04.568364",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341664",
+    "timestamp": "2026-07-06T18:11:04.572424",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341708",
+    "timestamp": "2026-07-06T18:11:48.168565",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341708",
+    "timestamp": "2026-07-06T18:11:48.184018",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341709",
+    "timestamp": "2026-07-06T18:11:49.257971",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341709",
+    "timestamp": "2026-07-06T18:11:49.261078",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341719",
+    "timestamp": "2026-07-06T18:11:59.316726",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341719",
+    "timestamp": "2026-07-06T18:11:59.319845",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341720",
+    "timestamp": "2026-07-06T18:12:00.317769",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341720",
+    "timestamp": "2026-07-06T18:12:00.320581",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341777",
+    "timestamp": "2026-07-06T18:12:57.303928",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341777",
+    "timestamp": "2026-07-06T18:12:57.307055",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341778",
+    "timestamp": "2026-07-06T18:12:58.183277",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341778",
+    "timestamp": "2026-07-06T18:12:58.186449",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341789",
+    "timestamp": "2026-07-06T18:13:09.194949",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341789",
+    "timestamp": "2026-07-06T18:13:09.198657",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341789",
+    "timestamp": "2026-07-06T18:13:09.913676",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341789",
+    "timestamp": "2026-07-06T18:13:09.917211",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341826",
+    "timestamp": "2026-07-06T18:13:46.881633",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341826",
+    "timestamp": "2026-07-06T18:13:46.885835",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783341827",
+    "timestamp": "2026-07-06T18:13:47.600319",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783341827",
+    "timestamp": "2026-07-06T18:13:47.603868",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783342276",
+    "timestamp": "2026-07-06T18:21:16.845273",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783342276",
+    "timestamp": "2026-07-06T18:21:16.848077",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783342314",
+    "timestamp": "2026-07-06T18:21:54.165169",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783342314",
+    "timestamp": "2026-07-06T18:21:54.167995",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783342352",
+    "timestamp": "2026-07-06T18:22:32.163829",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783342352",
+    "timestamp": "2026-07-06T18:22:32.166904",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783406188",
+    "timestamp": "2026-07-07T12:06:28.948104",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783406188",
+    "timestamp": "2026-07-07T12:06:28.968162",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783406191",
+    "timestamp": "2026-07-07T12:06:31.064417",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783406191",
+    "timestamp": "2026-07-07T12:06:31.070596",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783406238",
+    "timestamp": "2026-07-07T12:07:18.836067",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783406238",
+    "timestamp": "2026-07-07T12:07:18.838707",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783406239",
+    "timestamp": "2026-07-07T12:07:19.736735",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783406239",
+    "timestamp": "2026-07-07T12:07:19.738843",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783407356",
+    "timestamp": "2026-07-07T12:25:56.450908",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783407356",
+    "timestamp": "2026-07-07T12:25:56.454678",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783407357",
+    "timestamp": "2026-07-07T12:25:57.793114",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783407357",
+    "timestamp": "2026-07-07T12:25:57.797100",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783407821",
+    "timestamp": "2026-07-07T12:33:41.204716",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783407821",
+    "timestamp": "2026-07-07T12:33:41.207454",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783407822",
+    "timestamp": "2026-07-07T12:33:42.023206",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783407822",
+    "timestamp": "2026-07-07T12:33:42.025557",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783408968",
+    "timestamp": "2026-07-07T12:52:48.524857",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783408968",
+    "timestamp": "2026-07-07T12:52:48.530735",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783408969",
+    "timestamp": "2026-07-07T12:52:49.589177",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783408969",
+    "timestamp": "2026-07-07T12:52:49.596041",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783409545",
+    "timestamp": "2026-07-07T13:02:25.917427",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783409545",
+    "timestamp": "2026-07-07T13:02:25.922471",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783409546",
+    "timestamp": "2026-07-07T13:02:26.940981",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783409546",
+    "timestamp": "2026-07-07T13:02:26.944723",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783409774",
+    "timestamp": "2026-07-07T13:06:14.675228",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783409774",
+    "timestamp": "2026-07-07T13:06:14.689611",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783409776",
+    "timestamp": "2026-07-07T13:06:16.073924",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 43.51%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783409776",
+    "timestamp": "2026-07-07T13:06:16.094261",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410426",
+    "timestamp": "2026-07-07T13:17:06.172062",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410426",
+    "timestamp": "2026-07-07T13:17:06.177608",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410427",
+    "timestamp": "2026-07-07T13:17:07.255042",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410427",
+    "timestamp": "2026-07-07T13:17:07.262249",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410476",
+    "timestamp": "2026-07-07T13:17:56.212737",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410476",
+    "timestamp": "2026-07-07T13:17:56.224964",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410477",
+    "timestamp": "2026-07-07T13:17:57.783787",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410477",
+    "timestamp": "2026-07-07T13:17:57.799470",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410523",
+    "timestamp": "2026-07-07T13:18:43.232823",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410523",
+    "timestamp": "2026-07-07T13:18:43.240719",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410524",
+    "timestamp": "2026-07-07T13:18:44.441101",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410524",
+    "timestamp": "2026-07-07T13:18:44.444548",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410686",
+    "timestamp": "2026-07-07T13:21:26.049850",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410686",
+    "timestamp": "2026-07-07T13:21:26.056310",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783410687",
+    "timestamp": "2026-07-07T13:21:27.290985",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_distress_1783410687",
+    "timestamp": "2026-07-07T13:21:27.296039",
+    "severity": "Critical",
+    "source": "Audio Intelligence",
+    "message": "Repeated Vocal Distress Patterns Detected",
+    "acknowledged": true
+  },
+  {
+    "id": "alert_risk_1783413197",
+    "timestamp": "2026-07-07T14:03:17.512081",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783413198",
+    "timestamp": "2026-07-07T14:03:18.655543",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783414027",
+    "timestamp": "2026-07-07T14:17:07.384471",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783414031",
+    "timestamp": "2026-07-07T14:17:11.465261",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783414081",
+    "timestamp": "2026-07-07T14:18:01.317373",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783414118",
+    "timestamp": "2026-07-07T14:18:38.686281",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783414827",
+    "timestamp": "2026-07-07T14:30:27.964890",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-07T09:23:19.648330+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-07T09:24:07.472567+00:00"
+  },
+  {
+    "id": "alert_risk_1783416347",
+    "timestamp": "2026-07-07T14:55:47.346570",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783417738",
+    "timestamp": "2026-07-07T15:18:58.511277",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783417799",
+    "timestamp": "2026-07-07T15:19:59.049836",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783418046",
+    "timestamp": "2026-07-07T15:24:06.569913",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.5
+    },
+    "timestamp": "2026-07-07T09:56:26.243596+00:00"
+  },
+  {
+    "id": "alert_risk_1783418800",
+    "timestamp": "2026-07-07T15:36:40.892918",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.5
+    },
+    "timestamp": "2026-07-07T11:43:25.569096+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.5700000000000001
+    },
+    "timestamp": "2026-07-07T11:44:15.071689+00:00"
+  },
+  {
+    "id": "alert_risk_1783431804",
+    "timestamp": "2026-07-07T19:13:24.108843",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783437583",
+    "timestamp": "2026-07-07T20:49:43.060922",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783440365",
+    "timestamp": "2026-07-07T21:36:05.643444",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783440710",
+    "timestamp": "2026-07-07T21:41:50.686875",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 47.96%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783440710",
+    "timestamp": "2026-07-07T21:41:50.710639",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 44.23%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-07T16:11:51.436239+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.442).",
+    "details": {
+      "welfare_risk": 0.44226000000000004
+    },
+    "timestamp": "2026-07-07T16:11:51.436266+00:00"
+  },
+  {
+    "id": "alert_risk_1783441396",
+    "timestamp": "2026-07-07T21:53:16.301673",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783441447",
+    "timestamp": "2026-07-07T21:54:07.056492",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783442667",
+    "timestamp": "2026-07-07T22:14:27.497916",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783442748",
+    "timestamp": "2026-07-07T22:15:48.951374",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783442934",
+    "timestamp": "2026-07-07T22:18:54.040857",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783443131",
+    "timestamp": "2026-07-07T22:22:11.028608",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 54.32%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-07T16:52:11.514208+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.543).",
+    "details": {
+      "welfare_risk": 0.54322
+    },
+    "timestamp": "2026-07-07T16:52:11.514233+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-07T16:59:11.480375+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.543).",
+    "details": {
+      "welfare_risk": 0.54322
+    },
+    "timestamp": "2026-07-07T16:59:11.480423+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.55
+    },
+    "timestamp": "2026-07-07T16:59:23.230256+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.55
+    },
+    "timestamp": "2026-07-07T16:59:40.865693+00:00"
+  },
+  {
+    "id": "alert_risk_1783477085",
+    "timestamp": "2026-07-08T07:48:05.138448",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1783477214",
+    "timestamp": "2026-07-08T07:50:14.903850",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 44.23%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-08T02:20:15.250753+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.442).",
+    "details": {
+      "welfare_risk": 0.44226000000000004
+    },
+    "timestamp": "2026-07-08T02:20:15.250780+00:00"
+  },
+  {
+    "id": "alert_risk_1783692520",
+    "timestamp": "2026-07-10T19:38:40.150600",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.5166666666666667
+    },
+    "timestamp": "2026-07-10T14:14:18.596558+00:00"
+  },
+  {
+    "id": "alert_risk_1784179596",
+    "timestamp": "2026-07-16T10:56:36.533689",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784179599",
+    "timestamp": "2026-07-16T10:56:39.273136",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784179909",
+    "timestamp": "2026-07-16T11:01:49.752477",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784179912",
+    "timestamp": "2026-07-16T11:01:52.308146",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784180044",
+    "timestamp": "2026-07-16T11:04:04.060850",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784180081",
+    "timestamp": "2026-07-16T11:04:41.292185",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784180084",
+    "timestamp": "2026-07-16T11:04:44.024714",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784180145",
+    "timestamp": "2026-07-16T11:05:45.227050",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784180147",
+    "timestamp": "2026-07-16T11:05:47.837404",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784180664",
+    "timestamp": "2026-07-16T11:14:24.836517",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-16T05:46:32.719672+00:00"
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-16T05:53:06.924698+00:00"
+  }
+]
