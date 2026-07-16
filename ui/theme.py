@@ -14,17 +14,17 @@ def apply_theme():
         """
         <style>
         :root {
-            --app-bg-1: #f3f6fb;
-            --app-bg-2: #eef2f8;
+            --app-bg-1: #f8fbff;
+            --app-bg-2: #f1f5fb;
             --panel-bg: #ffffff;
-            --panel-border: #dbe3ef;
-            --text-strong: #10233e;
-            --text-muted: #5f738f;
-            --accent-1: #0ea5a8;
-            --accent-2: #2563eb;
-            --accent-soft: #e0f2fe;
-            --shadow-sm: 0 6px 18px rgba(16, 35, 62, 0.08);
-            --shadow-md: 0 18px 48px rgba(16, 35, 62, 0.12);
+            --panel-border: #c7d4e7;
+            --text-strong: #0a1a2f;
+            --text-muted: #2f4766;
+            --accent-1: #0f766e;
+            --accent-2: #1d4ed8;
+            --accent-soft: #dbeafe;
+            --shadow-sm: 0 6px 18px rgba(10, 26, 47, 0.1);
+            --shadow-md: 0 18px 48px rgba(10, 26, 47, 0.14);
             --radius-md: 14px;
             --radius-sm: 10px;
             --space-1: 8px;
@@ -34,7 +34,7 @@ def apply_theme():
 
         html, body, [class*="css"] {
             font-family: "Segoe UI", "Aptos", "Inter", "Helvetica Neue", sans-serif;
-            color: var(--text-strong);
+            color: var(--text-strong) !important;
         }
 
         .stApp {
@@ -45,22 +45,78 @@ def apply_theme():
         }
 
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #0f1f36 0%, #1a3354 100%);
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff !important;
+            border-right: 2px solid #c4d3e8;
         }
 
         section[data-testid="stSidebar"] * {
-            color: #e2ebf8;
+            color: #0a1a2f !important;
+        }
+
+        section[data-testid="stSidebar"] label,
+        section[data-testid="stSidebar"] .stMarkdown,
+        section[data-testid="stSidebar"] .stCaption,
+        section[data-testid="stSidebar"] .stSubheader,
+        section[data-testid="stSidebar"] h1,
+        section[data-testid="stSidebar"] h2,
+        section[data-testid="stSidebar"] h3,
+        section[data-testid="stSidebar"] h4,
+        section[data-testid="stSidebar"] h5,
+        section[data-testid="stSidebar"] h6 {
+            color: #0a1a2f !important;
+            opacity: 1 !important;
+        }
+
+        section[data-testid="stSidebar"] div[data-baseweb="select"] > div,
+        section[data-testid="stSidebar"] .stTextInput input,
+        section[data-testid="stSidebar"] .stNumberInput input,
+        section[data-testid="stSidebar"] .stTextArea textarea,
+        section[data-testid="stSidebar"] .stDateInput input {
+            background: #ffffff !important;
+            border: 1px solid #8ea6c6 !important;
+            color: #0a1a2f !important;
+            border-radius: 10px !important;
+        }
+
+        section[data-testid="stSidebar"] div[data-baseweb="select"] [role="combobox"] {
+            color: #0a1a2f !important;
+        }
+
+        div[role="listbox"] {
+            background: #ffffff !important;
+            border: 1px solid #8ea6c6 !important;
+            border-radius: 10px !important;
+        }
+
+        div[role="option"] {
+            color: #0a1a2f !important;
+            background: #ffffff !important;
+        }
+
+        div[role="option"][aria-selected="true"],
+        div[role="option"]:hover {
+            background: #dbeafe !important;
+            color: #0a1a2f !important;
+        }
+
+        section[data-testid="stSidebar"] .stSlider [role="slider"] {
+            background: #1d4ed8 !important;
+            border: 2px solid #ffffff !important;
+        }
+
+        section[data-testid="stSidebar"] .stCheckbox label,
+        section[data-testid="stSidebar"] .stRadio label {
+            color: #0a1a2f !important;
         }
 
         section[data-testid="stSidebar"] h2,
         section[data-testid="stSidebar"] .st-emotion-cache-10trblm {
-            color: #ffffff;
+            color: #0a1a2f !important;
             letter-spacing: 0.02em;
         }
 
         [data-testid="stHeader"] {
-            background: rgba(255, 255, 255, 0.76);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--panel-border);
         }
@@ -69,7 +125,7 @@ def apply_theme():
             position: sticky;
             top: 0.35rem;
             z-index: 20;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.97);
             border: 1px solid var(--panel-border);
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
@@ -87,7 +143,7 @@ def apply_theme():
         }
 
         .app-shell-title {
-            color: #0f2748;
+            color: #0a1a2f;
             font-weight: 700;
             letter-spacing: 0.01em;
             font-size: 1rem;
@@ -128,9 +184,7 @@ def apply_theme():
         .main-title {
             font-size: 2.65rem;
             font-weight: 800;
-            background: linear-gradient(120deg, var(--accent-1) 0%, var(--accent-2) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0a1a2f;
             margin-bottom: 4px;
             letter-spacing: -0.02em;
         }
@@ -150,7 +204,7 @@ def apply_theme():
 
         div[data-testid="stMetric"] label {
             color: var(--text-muted);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .kpi-card {
@@ -221,9 +275,7 @@ def apply_theme():
         .kpi-value {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(120deg, #0f766e 0%, #1d4ed8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0a1a2f;
         }
         .kpi-label {
             font-size: 0.8rem;
@@ -266,6 +318,8 @@ def apply_theme():
         .stMultiSelect [data-baseweb="select"] {
             border-radius: var(--radius-sm) !important;
             border-color: #cfd9e8 !important;
+            color: var(--text-strong) !important;
+            background: #ffffff !important;
         }
 
         .stDataFrame,
@@ -374,8 +428,8 @@ def apply_theme():
         }
 
         section[data-testid="stSidebar"] [data-baseweb="radio"] label:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.16);
+            background: #eaf2ff;
+            border-color: #b6c8e4;
         }
 
         section[data-testid="stSidebar"] [data-baseweb="radio"] input:checked + div {
@@ -386,6 +440,15 @@ def apply_theme():
             border-radius: var(--radius-md) !important;
             border: 1px solid #d8e4f3 !important;
             box-shadow: var(--shadow-sm);
+        }
+
+        p, li, label, .stMarkdown, .stCaption, .stSubheader, .stText, .st-emotion-cache-10trblm {
+            color: var(--text-strong) !important;
+        }
+
+        .stCaption {
+            color: var(--text-muted) !important;
+            opacity: 1 !important;
         }
 
         @media (max-width: 900px) {
@@ -410,4 +473,3 @@ def apply_theme():
         """,
         unsafe_allow_html=True,
     )
-

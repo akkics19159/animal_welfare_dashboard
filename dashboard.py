@@ -6,8 +6,9 @@ from datetime import datetime
 import streamlit as st
 
 from ui.api_client import ApiClient
+from ui.components_live import maybe_autorefresh
 from ui.sidebar import render_sidebar
-from ui.state import ensure_session_defaults
+from ui.state import ensure_session_defaults, get_global_date_range, mark_new_run, get_current_run_token
 from ui.theme import apply_theme
 
 
@@ -69,8 +70,9 @@ def _render_shell_header(backend_online: bool) -> None:
 def main() -> None:
     apply_theme()
     ensure_session_defaults()
+    mark_new_run()
 
-    api = ApiClient("http://127.0.0.1:8000")
+    api = ApiClient("http://127.0.0.1:8000", run_token=get_current_run_token())
     backend_online = api.online()
     if not backend_online:
         # Best-effort fallback probe to reduce false offline state.
@@ -84,6 +86,17 @@ def main() -> None:
     _render_shell_header(backend_online)
 
     selected_page = render_sidebar()
+    global_start, global_end = get_global_date_range()
+    if global_start > global_end:
+        st.error("Global date range is invalid. Please set Start date <= End date from the sidebar.")
+        return
+
+    maybe_autorefresh(
+        bool(st.session_state.get("global_auto_refresh_enabled", False)),
+        int(st.session_state.get("global_auto_refresh_seconds", 15)),
+        key="global_dashboard_autorefresh",
+    )
+
     page_mod_name = _get_page_module(selected_page)
 
     import importlib
@@ -101,4 +114,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

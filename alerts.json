@@ -613,7 +613,7 @@
     "severity": "Critical",
     "source": "Audio Intelligence",
     "message": "Repeated Vocal Distress Patterns Detected",
-    "acknowledged": false
+    "acknowledged": true
   },
   {
     "id": "alert_risk_1783410477",
@@ -1188,6 +1188,158 @@
   {
     "id": "alert_risk_1784182934",
     "timestamp": "2026-07-16T11:52:14.767203",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784183705",
+    "timestamp": "2026-07-16T12:05:05.931402",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 44.23%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.65
+    },
+    "timestamp": "2026-07-16T06:35:06.235366+00:00"
+  },
+  {
+    "key": "high_welfare_risk",
+    "category": "High welfare risk",
+    "severity": "Warning",
+    "message": "Elevated welfare risk (risk=0.442).",
+    "details": {
+      "welfare_risk": 0.44226000000000004
+    },
+    "timestamp": "2026-07-16T06:35:06.235395+00:00"
+  },
+  {
+    "id": "alert_risk_1784184507",
+    "timestamp": "2026-07-16T12:18:27.319416",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784184720",
+    "timestamp": "2026-07-16T12:22:00.092375",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784184721",
+    "timestamp": "2026-07-16T12:22:01.227137",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784185027",
+    "timestamp": "2026-07-16T12:27:07.211672",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "key": "distress",
+    "category": "Distress",
+    "severity": "Critical",
+    "message": "Distress signal detected in audio.",
+    "details": {
+      "distress": true,
+      "score": 0.55
+    },
+    "timestamp": "2026-07-16T07:00:18.750025+00:00"
+  },
+  {
+    "id": "alert_risk_1784212959",
+    "timestamp": "2026-07-16T20:12:39.498289",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784212961",
+    "timestamp": "2026-07-16T20:12:41.718391",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784213118",
+    "timestamp": "2026-07-16T20:15:18.499361",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784213120",
+    "timestamp": "2026-07-16T20:15:20.511495",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784213390",
+    "timestamp": "2026-07-16T20:19:50.487026",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784213392",
+    "timestamp": "2026-07-16T20:19:52.541414",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784213517",
+    "timestamp": "2026-07-16T20:21:57.868120",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784213519",
+    "timestamp": "2026-07-16T20:21:59.958881",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784216785",
+    "timestamp": "2026-07-16T21:16:25.179895",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784216787",
+    "timestamp": "2026-07-16T21:16:27.233856",
     "severity": "Warning",
     "source": "Reasoning Engine",
     "message": "Warning Welfare Risk: Suffering probability is 55.09%",

@@ -4,6 +4,8 @@ from typing import Any, Dict, List
 
 import streamlit as st
 
+from ui.state import get_global_date_range, filter_records_by_date_range
+
 
 def _safe_list(x: Any) -> List[Dict[str, Any]]:
     return x if isinstance(x, list) else []
@@ -35,11 +37,20 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
         return
 
     alerts: List[Dict[str, Any]] = _safe_list(alerts_raw)
+    global_start, global_end = get_global_date_range()
+    alerts = filter_records_by_date_range(
+        alerts,
+        global_start,
+        global_end,
+        date_fields=("timestamp", "created_at"),
+        include_if_missing=False,
+    )
 
     if not alerts:
-        st.info("No alerts available.")
+        st.info("No alerts available in the selected global date range.")
         return
 
+    st.caption(f"Global date range: {global_start} → {global_end}")
     unresolved_count = len([a for a in alerts if not a.get("acknowledged")])
     st.caption(f"Unresolved alerts: **{unresolved_count}**")
 
@@ -138,5 +149,4 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
 
     st.divider()
     st.caption("Acknowledgements are persisted by the backend via `/api/alerts/acknowledge`.")
-
 

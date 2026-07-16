@@ -4,6 +4,8 @@ from typing import Any, Dict, List, Optional
 
 import streamlit as st
 
+from ui.state import get_global_date_range, filter_records_by_date_range
+
 
 def _safe_float(x: Any, default: float = 0.0) -> float:
     try:
@@ -113,6 +115,37 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
 
     status = (resp or {}).get("status") or {}
     history = (resp or {}).get("history") or []
+    global_start, global_end = get_global_date_range()
+
+    model_created_at: Dict[str, Any] = {}
+    try:
+        model_rows = api.get("/api/models")
+        if isinstance(model_rows, list):
+            for row in model_rows:
+                if isinstance(row, dict) and row.get("model_version"):
+                    model_created_at[str(row.get("model_version"))] = row.get("created_at")
+    except Exception:
+        model_created_at = {}
+
+    history_with_time: List[Dict[str, Any]] = []
+    for row in history if isinstance(history, list) else []:
+        if not isinstance(row, dict):
+            continue
+        entry = dict(row)
+        cfg = entry.get("config") or {}
+        model_name = str(cfg.get("model_name") or cfg.get("pipeline_type") or "")
+        if "_derived_timestamp" not in entry and model_name in model_created_at:
+            entry["_derived_timestamp"] = model_created_at.get(model_name)
+        history_with_time.append(entry)
+
+    history = filter_records_by_date_range(
+        history_with_time,
+        global_start,
+        global_end,
+        date_fields=("timestamp", "created_at", "config.created_at", "_derived_timestamp"),
+        include_if_missing=True,
+    )
+    st.caption(f"Global date range: {global_start} → {global_end}")
 
     if status:
         _render_active_status(status)
@@ -121,4 +154,3 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
 
     st.divider()
     _render_learning_curves_from_history(history)
-

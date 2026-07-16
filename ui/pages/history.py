@@ -6,6 +6,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from ui.state import get_global_date_range
+
 
 def _safe_float(x: Any, default: Optional[float] = None) -> Optional[float]:
     try:
@@ -73,13 +75,8 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
 
     # Filters
     st.sidebar.header("History filters")
-    min_date = df[dt_col].dt.date.min()
-    max_date = df[dt_col].dt.date.max()
-    start_date = st.sidebar.date_input("Start date", value=min_date)
-    end_date = st.sidebar.date_input("End date", value=max_date)
-    if start_date > end_date:
-        st.sidebar.error("Start date must be <= end date")
-        return
+    start_date, end_date = get_global_date_range()
+    st.caption(f"Global date range: {start_date} → {end_date}")
 
     start_dt = pd.Timestamp(start_date)
     end_dt = pd.Timestamp(end_date) + pd.Timedelta(days=1) - pd.Timedelta(microseconds=1)
@@ -175,5 +172,4 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
             show_cols.append(c)
 
     st.dataframe(df_f[show_cols].sort_values(by=dt_col, ascending=False).head(200), width="stretch", hide_index=True)
-
 

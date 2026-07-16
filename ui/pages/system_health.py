@@ -6,6 +6,7 @@ import streamlit as st
 
 from ui.api_client import ApiClient
 from ui.components_live.system_health_widgets import render_device_status, render_system_health_kpis
+from ui.state import get_global_date_range, filter_records_by_date_range
 
 
 def render_page(api: ApiClient, backend_online: bool, default_history_path: str, default_video_path: str) -> None:
@@ -28,6 +29,19 @@ def render_page(api: ApiClient, backend_online: bool, default_history_path: str,
     if not isinstance(health, dict):
         st.info("No health payload available.")
         return
+    global_start, global_end = get_global_date_range()
+    health_rows = filter_records_by_date_range(
+        [health],
+        global_start,
+        global_end,
+        date_fields=("timestamp",),
+        include_if_missing=False,
+    )
+    if not health_rows:
+        st.info("No system health snapshot in the selected global date range.")
+        return
+    st.caption(f"Global date range: {global_start} → {global_end}")
+    health = health_rows[0]
 
     # CPU/RAM/GPU/Disk/Temperature/Inference throughput/FPS
     render_system_health_kpis(health)
@@ -36,4 +50,3 @@ def render_page(api: ApiClient, backend_online: bool, default_history_path: str,
 
     # Camera/Microphone/Sensor status
     render_device_status(health)
-

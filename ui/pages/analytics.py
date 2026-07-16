@@ -8,6 +8,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+from ui.state import get_global_date_range
+
 
 def _to_datetime_series(s: pd.Series) -> pd.Series:
     return pd.to_datetime(s, errors="coerce", utc=False)
@@ -469,28 +471,26 @@ def _try_backend_load(api: Any, backend_online: bool, start: dt.date, end: dt.da
     history_df = pd.DataFrame()
     alerts_df: Optional[pd.DataFrame] = None
 
-    # History / analytics endpoints might differ across deployments.
-    # We'll try a small set of plausible URLs.
-    candidates = ["/api/analytics", "/api/history", "/api/trends", "/api/observations"]
+    # Canonical run-history source for consistency across pages.
+    try:
+        resp = api.get("/api/history")
+        if isinstance(resp, list):
+            history_df = pd.DataFrame(resp)
+    except Exception:
+        history_df = pd.DataFrame()
 
-    for path in candidates:
+    # Fallback: derive a minimal timeline from analytics trends when history is unavailable.
+    if history_df.empty:
         try:
-            resp = api.get(path)
-            # Many backends return {"rows": [...]} or direct list
-            if isinstance(resp, dict):
-                rows = resp.get("rows") or resp.get("data") or resp.get("items") or resp.get("history")
-                if rows is not None:
-                    history_df = pd.DataFrame(rows)
-                else:
-                    # Sometimes analytics aggregates only
-                    history_df = pd.DataFrame(resp)
-            elif isinstance(resp, list):
-                history_df = pd.DataFrame(resp)
-
-            if not history_df.empty:
-                break
+            analytics_resp = api.get("/api/analytics")
+            if isinstance(analytics_resp, dict):
+                trends = analytics_resp.get("trends")
+                if isinstance(trends, list) and trends:
+                    history_df = pd.DataFrame(trends)
+                    if "date_hour" in history_df.columns and "timestamp" not in history_df.columns:
+                        history_df = history_df.rename(columns={"date_hour": "timestamp"})
         except Exception:
-            continue
+            history_df = pd.DataFrame()
 
     # Alerts endpoint
     try:
@@ -522,16 +522,11 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
     st.markdown("Interactive analytics dashboard with filtering and date ranges. Charts are best-effort from backend analytics/history; otherwise fall back to the local history CSV.")
 
     # ---- Filters ----
-    today = dt.date.today()
-    default_start = today - dt.timedelta(days=30)
+    start_date, end_date = get_global_date_range()
+    st.caption(f"Global date range: {start_date} → {end_date}")
 
     with st.sidebar:
         st.header("Filters")
-        start_date = st.date_input("Start date", value=default_start)
-        end_date = st.date_input("End date", value=today)
-
-        if start_date > end_date:
-            st.error("Start date must be <= end date")
 
         species_col_candidates = ["species", "species_name", "animal_species", "class_name"]
         occupancy_col_candidates = ["occupancy", "occupancy_rate", "animal_count", "count"]
@@ -563,9 +558,6 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
     # Persist toggles for chart rendering in the main body
     show_all_requested = st.sidebar.checkbox("Show all requested analytics sections", True, key="analytics_show_all_requested")
 
-
-    if start_date > end_date:
-        return
 
     # ---- Load data (best-effort backend) ----
     history_df, alerts_df = _try_backend_load(api, backend_online, start_date, end_date)
@@ -656,19 +648,16 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
         pass
 
     # Daily trends
-    if st.session_state.get("show_daily", True):
-        if show_daily:
-            _render_daily_trends(history_df, datetime_col)
+    if show_daily:
+        _render_daily_trends(history_df, datetime_col)
 
     # Weekly trends
-    if st.session_state.get("show_weekly", True):
-        if show_weekly:
-            _render_weekly_trends(history_df, datetime_col)
+    if show_weekly:
+        _render_weekly_trends(history_df, datetime_col)
 
     # Monthly trends
-    if st.session_state.get("show_monthly", True):
-        if show_monthly:
-            _render_monthly_trends(history_df, datetime_col)
+    if show_monthly:
+        _render_monthly_trends(history_df, datetime_col)
 
     # Species distribution
     if show_species:
@@ -736,4 +725,3 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
                 _render_alert_trends_from_df(alerts_df, alert_dt_col)
         else:
             st.info("Alert trends: no alert data available for the selected date range.")
-

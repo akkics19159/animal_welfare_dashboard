@@ -134,12 +134,26 @@ def _safe_json_atomic_write(file_path: Path, data: Any):
 
 def _append_history_record(record: Dict[str, Any]):
     HISTORY_CSV.parent.mkdir(parents=True, exist_ok=True)
-    df_new = pd.DataFrame([record])
     with _HISTORY_LOCK:
         if HISTORY_CSV.exists():
-            df_new.to_csv(HISTORY_CSV, mode="a", header=False, index=False, encoding="utf-8")
+            # Keep row schema aligned with the existing header so rows remain readable
+            # by /api/history and /api/analytics even when record fields evolve.
+            try:
+                with HISTORY_CSV.open("r", encoding="utf-8", newline="") as f:
+                    reader = csv.reader(f)
+                    header = next(reader, [])
+            except Exception:
+                header = []
+
+            if header:
+                row = {col: record.get(col, "") for col in header}
+                with HISTORY_CSV.open("a", encoding="utf-8", newline="") as f:
+                    writer = csv.DictWriter(f, fieldnames=header)
+                    writer.writerow(row)
+            else:
+                pd.DataFrame([record]).to_csv(HISTORY_CSV, mode="a", header=False, index=False, encoding="utf-8")
         else:
-            df_new.to_csv(HISTORY_CSV, index=False, encoding="utf-8")
+            pd.DataFrame([record]).to_csv(HISTORY_CSV, index=False, encoding="utf-8")
 
 
 def _recent_avg(values: deque) -> float:

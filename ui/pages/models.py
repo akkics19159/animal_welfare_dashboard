@@ -4,6 +4,8 @@ from typing import Any, Dict, List, Optional
 
 import streamlit as st
 
+from ui.state import get_global_date_range, filter_records_by_date_range
+
 
 def _safe_str(x: Any, default: str = "") -> str:
     return str(x) if x is not None else default
@@ -55,9 +57,18 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
         return
 
     models = models if isinstance(models, list) else []
+    global_start, global_end = get_global_date_range()
+    models = filter_records_by_date_range(
+        models,
+        global_start,
+        global_end,
+        date_fields=("created_at", "timestamp"),
+        include_if_missing=True,
+    )
     if not models:
-        st.info("No models present in registry.")
+        st.info("No models present in the selected global date range.")
         return
+    st.caption(f"Global date range: {global_start} → {global_end}")
 
     active = next((m for m in models if m.get("active")), None)
 
@@ -112,4 +123,3 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
                 st.rerun()
             except Exception as e:
                 st.error(f"Activation failed: {e}")
-

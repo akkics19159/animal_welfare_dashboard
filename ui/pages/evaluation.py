@@ -5,6 +5,7 @@ from typing import Any, Dict, List
 import streamlit as st
 
 from ui.api_client import ApiClient
+from ui.state import get_global_date_range, filter_records_by_date_range
 
 from ui.components_live.evaluation_widgets import (
     render_calibration,
@@ -45,6 +46,39 @@ def render_page(api: ApiClient, backend_online: bool, default_history_path: str,
     if not isinstance(history, list) or not history:
         st.info("No evaluation experiments found.")
         return
+    global_start, global_end = get_global_date_range()
+
+    model_created_at: Dict[str, Any] = {}
+    try:
+        model_rows = api.get("/api/models")
+        if isinstance(model_rows, list):
+            for row in model_rows:
+                if isinstance(row, dict) and row.get("model_version"):
+                    model_created_at[str(row.get("model_version"))] = row.get("created_at")
+    except Exception:
+        model_created_at = {}
+
+    history_with_time: List[Dict[str, Any]] = []
+    for row in history:
+        if not isinstance(row, dict):
+            continue
+        entry = dict(row)
+        model_name = str((entry.get("config") or {}).get("model") or "")
+        if "_derived_timestamp" not in entry and model_name in model_created_at:
+            entry["_derived_timestamp"] = model_created_at.get(model_name)
+        history_with_time.append(entry)
+
+    history = filter_records_by_date_range(
+        history_with_time,
+        global_start,
+        global_end,
+        date_fields=("timestamp", "created_at", "config.created_at", "_derived_timestamp"),
+        include_if_missing=True,
+    )
+    if not history:
+        st.info("No evaluation experiments found in the selected global date range.")
+        return
+    st.caption(f"Global date range: {global_start} → {global_end}")
 
     # Select experiment
     names = []
@@ -94,4 +128,3 @@ def render_page(api: ApiClient, backend_online: bool, default_history_path: str,
     # Model comparison
     st.divider()
     render_model_comparison(history)
-

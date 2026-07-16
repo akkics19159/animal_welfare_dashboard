@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from ui.state import DashboardConfig, get_config, set_config
+from ui.state import DashboardConfig, get_config, set_config, get_global_date_range
 
 
 def _role_permissions() -> dict:
@@ -103,5 +103,17 @@ def render_sidebar() -> str:
         cfg.use_simulated_sensors = st.checkbox("Simulate Sensors", bool(cfg.use_simulated_sensors), key="sidebar_simulate_sensors")
         set_config(cfg)
 
-        return selected_page
+        st.divider()
+        st.subheader("🗓️ Global Date Range")
+        start_date, end_date = get_global_date_range()
+        selected_start = st.date_input("Start date", value=start_date, key="global_start_date")
+        selected_end = st.date_input("End date", value=end_date, key="global_end_date")
+        if selected_start > selected_end:
+            st.error("Start date must be <= end date")
 
+        st.divider()
+        st.subheader("🔄 Global Refresh")
+        st.checkbox("Auto refresh all pages", False, key="global_auto_refresh_enabled")
+        st.slider("Refresh interval (seconds)", 1, 60, int(st.session_state.get("global_auto_refresh_seconds", 15)), 1, key="global_auto_refresh_seconds")
+
+        return selected_page

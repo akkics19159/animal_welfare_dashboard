@@ -4,6 +4,8 @@ from typing import Any, Dict, List
 
 import streamlit as st
 
+from ui.state import get_global_date_range, filter_records_by_date_range
+
 
 def _render_species_distribution(meta: Dict[str, Any]) -> None:
     dist = meta.get("species_distribution") or {}
@@ -48,10 +50,19 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
 
     # API returns list(db.values()) where values include dataset_id, version, metadata
     datasets: List[Dict[str, Any]] = raw if isinstance(raw, list) else []
+    global_start, global_end = get_global_date_range()
+    datasets = filter_records_by_date_range(
+        datasets,
+        global_start,
+        global_end,
+        date_fields=("metadata.created_at", "created_at", "timestamp"),
+        include_if_missing=True,
+    )
 
     if not datasets:
-        st.info("No datasets found in registry.")
+        st.info("No datasets found in the selected global date range.")
         return
+    st.caption(f"Global date range: {global_start} → {global_end}")
 
     # Build selector options
     # Prefer dataset_id; fallback to version
@@ -129,4 +140,3 @@ def render_page(api, backend_online: bool, default_history_path: str, default_vi
     # ---- Species distribution ----
     st.divider()
     _render_species_distribution(meta)
-
