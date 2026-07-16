@@ -1176,5 +1176,21 @@
       "score": 0.65
     },
     "timestamp": "2026-07-16T05:53:06.924698+00:00"
+  },
+  {
+    "id": "alert_risk_1784182258",
+    "timestamp": "2026-07-16T11:40:58.438419",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
+  },
+  {
+    "id": "alert_risk_1784182934",
+    "timestamp": "2026-07-16T11:52:14.767203",
+    "severity": "Warning",
+    "source": "Reasoning Engine",
+    "message": "Warning Welfare Risk: Suffering probability is 55.09%",
+    "acknowledged": false
   }
 ]

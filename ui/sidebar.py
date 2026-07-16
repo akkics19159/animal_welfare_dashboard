@@ -46,8 +46,20 @@ def _role_permissions() -> dict:
 def render_sidebar() -> str:
     """Render sidebar controls and return selected page name."""
     with st.sidebar:
-        st.image("https://img.icons8.com/color/96/000000/dog-heart.png", width=64)
-        st.markdown("<h2 style='margin-bottom:5px;'>Welfare Platform</h2>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style='padding: 8px 2px 4px 2px;'>
+                <div style='display:flex;align-items:center;gap:10px;'>
+                    <div style='width:34px;height:34px;border-radius:10px;background:#dbeafe;color:#1d4ed8;display:flex;align-items:center;justify-content:center;font-weight:800;'>SW</div>
+                    <div>
+                        <div style='font-weight:800;font-size:1.02rem;color:#ffffff;'>Sentient Welfare</div>
+                        <div style='font-size:0.76rem;opacity:0.86;'>Enterprise Monitoring Platform</div>
+                    </div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
         backend_online = False
         try:
@@ -58,9 +70,9 @@ def render_sidebar() -> str:
 
         st.markdown(
             (
-                "<span style='color:#10b981; font-weight:bold;'>● API Backend Online</span>"
+                "<span style='display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.16);border:1px solid rgba(110,231,183,0.45);border-radius:999px;padding:4px 10px;color:#d1fae5;font-weight:700;font-size:0.78rem;'>● API Backend Online</span>"
                 if backend_online
-                else "<span style='color:#f43f5e; font-weight:bold;'>○ Local Fallback Mode (API Offline)</span>"
+                else "<span style='display:inline-flex;align-items:center;gap:6px;background:rgba(244,63,94,0.16);border:1px solid rgba(253,164,175,0.45);border-radius:999px;padding:4px 10px;color:#ffe4e6;font-weight:700;font-size:0.78rem;'>○ Local Fallback Mode (API Offline)</span>"
             ),
             unsafe_allow_html=True,
         )

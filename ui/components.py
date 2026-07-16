@@ -8,10 +8,19 @@ import plotly.graph_objects as go
 import streamlit as st
 
 
-def kpi_card(value: Any, label: str) -> None:
+def kpi_card(value: Any, label: str, icon: str = "#", trend: str = "flat") -> None:
+    trend_norm = str(trend or "flat").lower()
+    if trend_norm not in {"up", "down", "flat"}:
+        trend_norm = "flat"
+    trend_symbol = {"up": "▲", "down": "▼", "flat": "•"}[trend_norm]
+
     st.markdown(
         f"""
         <div class='kpi-card'>
+            <div class='kpi-head'>
+                <span class='kpi-icon'>{icon}</span>
+                <span class='kpi-trend {trend_norm}'>{trend_symbol}</span>
+            </div>
             <div class='kpi-value'>{value}</div>
             <div class='kpi-label'>{label}</div>
         </div>
@@ -63,8 +72,10 @@ def welfare_timeline_chart(history_df: pd.DataFrame) -> None:
             y=df["welfare_score"],
             mode="lines+markers",
             name="Welfare Score (%)",
-            line=dict(color="#8b5cf6", width=3),
+            line=dict(color="#2563eb", width=3),
             fill="tozeroy",
+            fillcolor="rgba(37, 99, 235, 0.12)",
+            marker=dict(size=5, color="#0ea5a8"),
         )
     )
     fig.update_layout(
@@ -73,7 +84,13 @@ def welfare_timeline_chart(history_df: pd.DataFrame) -> None:
         yaxis_title="Score (%)",
         height=350,
         hovermode="x unified",
-        template="plotly_dark",
+        template="plotly_white",
+        paper_bgcolor="#ffffff",
+        plot_bgcolor="#ffffff",
+        margin=dict(l=12, r=12, t=48, b=8),
+        legend=dict(orientation="h", yanchor="bottom", y=1.01, xanchor="left", x=0),
     )
+    fig.update_xaxes(showgrid=True, gridcolor="#e5ecf6")
+    fig.update_yaxes(showgrid=True, gridcolor="#e5ecf6")
     st.plotly_chart(fig, width="stretch")
 

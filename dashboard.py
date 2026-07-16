@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from datetime import datetime
 
 import streamlit as st
 
@@ -45,6 +46,26 @@ def _render_footer() -> None:
     )
 
 
+def _render_shell_header(backend_online: bool) -> None:
+    status_class = "ok" if backend_online else "warn"
+    status_label = "Backend Online" if backend_online else "Fallback Mode"
+    now_label = datetime.now().strftime("%Y-%m-%d %H:%M")
+    st.markdown(
+        f"""
+        <div class='app-shell-header'>
+            <div class='app-shell-row'>
+                <div class='app-shell-title'>Sentient Welfare Monitoring Platform</div>
+                <div class='app-shell-meta'>
+                    <span class='status-chip {status_class}'>{status_label}</span>
+                    <span>Updated {now_label}</span>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def main() -> None:
     apply_theme()
     ensure_session_defaults()
@@ -59,6 +80,8 @@ def main() -> None:
         except Exception:
             backend_online = False
     st.session_state.backend_online = backend_online
+
+    _render_shell_header(backend_online)
 
     selected_page = render_sidebar()
     page_mod_name = _get_page_module(selected_page)
